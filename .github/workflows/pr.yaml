@@ -1,0 +1,14 @@
+name: PR checks
+
+on:
+  pull_request:
+
+
+jobs:
+
+  deployment:
+    runs-on: self-hosted
+    environment: sbx
+    steps:
+      - run: echo "hello there"
+
