@@ -35,6 +35,6 @@ jobs:
           git add exterminate.txt
           git commit -m "My commit message"
           git push -u origin HEAD
-          gh pr create -B master -H straight-to-prod --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+          gh pr create -B main -H straight-to-prod --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
