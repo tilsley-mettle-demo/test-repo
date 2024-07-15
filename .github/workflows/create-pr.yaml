@@ -1,0 +1,40 @@
+name: create pr
+
+
+# Trigger on push to master
+# You can also exclude certain paths i.e. dont build when docs change
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-excluding-paths
+on:
+  push:
+
+jobs:
+
+  # creates an incrementing semver i.e. 0.0.1, 0.0.2
+  # This job can be replaced with any versioning strategy you want
+  create-pr:
+    permissions:
+      id-token: write
+      contents: write
+      packages: write
+      pull-requests: write
+      checks: write
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+        with:
+          ref: master
+      - name: create pull request
+        shell: bash
+        run: |
+          git status
+          git branch
+          git checkout -b straight-to-prod
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          echo "EXTERMINATE" >> exterminate.txt
+          git add exterminate.txt
+          git commit -m "My commit message"
+          git push -u origin HEAD
+          gh pr create -B master -H straight-to-prod --title 'Merge branch_to_merge into base_branch' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
