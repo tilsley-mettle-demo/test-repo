@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  # creates an incrementing semver i.e. 0.0.1, 0.0.2
+  # creates an incrementing semver i.e. 0.0.1, 0.0.
   # This job can be replaced with any versioning strategy you want
   create-pr:
     permissions:
