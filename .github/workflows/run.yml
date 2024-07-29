@@ -1,0 +1,13 @@
+name: PR checks
+
+on:
+  pull_request:
+
+
+jobs:
+
+  deployment:
+    runs-on: ubuntu-latest
+    environment: sbx
+    steps:
+      - run: echo "hello there"
